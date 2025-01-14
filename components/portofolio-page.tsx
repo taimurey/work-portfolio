@@ -1,9 +1,10 @@
 "use client"
 import { ArrowRightIcon, DownloadIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaTelegram } from "react-icons/fa";
 import _ from 'lodash';
 import { COLOR_MAP, Contribution } from "@/app/api/types";
+import { BsDiscord } from "react-icons/bs";
 
 function Portfolio() {
     const [contributions, setContributions] = useState<Contribution[]>([]);
@@ -155,6 +156,12 @@ function Portfolio() {
                     <a href="https://github.com/taimurey" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold">
                         <FaGithub className="text-white w-6 h-6" />
                     </a>
+                    <a href="https://discordapp.com/users/324804129916583936" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold">
+                        <BsDiscord className="text-white w-6 h-6" />
+                    </a>
+                    <a href="https://t.me/taimuri" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold">
+                        <FaTelegram className="text-white w-6 h-6" />
+                    </a>
                     <a
                         href="/taimoor-shafique-cv.pdf"
                         download
@@ -170,7 +177,8 @@ function Portfolio() {
                         </span>
                     </a>
                     <a
-                        href="contact@tamur.dev"
+                        href="https://calendly.com/taimoorshafique541"
+                        target="_blank" rel="noopener noreferrer"
                         className="hover:text-white transition-colors flex items-center gap-2"
                     >
                         Get in touch <ArrowRightIcon size={16} />
