@@ -118,7 +118,7 @@ function Portfolio() {
                 </div>
 
                 <div className="w-full max-w-xl mt-8 space-y-3">
-                    <div className="flex justify-between items-center text-gray-300 hover:text-white transition-colors">
+                    <div className="flex justify-between items-center text-gray-300 transition-colors">
                         <div className="flex items-center">
                             <span>Founding Engineer and designer</span>
                             <a href="https://bundler.space" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold ml-2">
@@ -128,17 +128,17 @@ function Portfolio() {
                         <span className="text-gray-500 ml-4">July 2022 — Dec 2024</span>
                     </div>
 
-                    <div className="flex justify-between items-center text-gray-300 hover:text-white transition-colors">
+                    <div className="flex justify-between items-center text-gray-300 transition-colors">
                         <div className="flex items-center">
                             <span>Blockchain developer at</span>
-                            <a href="https://aurix.app" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold ml-2">
+                            <a className="text-white hover:underline font-bold ml-2 cursor-pointer">
                                 Monumental AS
                             </a>
                         </div>
                         <span className="text-gray-500 ml-4">Aug 2024 — Jan 2025</span>
                     </div>
 
-                    <div className="flex justify-between items-center text-gray-300 hover:text-white transition-colors">
+                    <div className="flex justify-between items-center text-gray-300 transition-colors">
                         <div className="flex items-center">
                             <span>Founding Engineer and designer</span>
                             <a href="https://aurix.app" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold ml-2">
