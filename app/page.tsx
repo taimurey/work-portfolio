@@ -1,7 +1,5 @@
-import { ArrowRightIcon, DownloadIcon, GithubIcon } from "lucide-react";
-import Image from "next/image";
-import { BsGithub } from "react-icons/bs";
-import { FaDownload, FaGithub } from "react-icons/fa";
+import { ArrowRightIcon, DownloadIcon } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 export default function Home() {
   return (
