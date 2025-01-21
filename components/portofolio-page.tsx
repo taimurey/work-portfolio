@@ -113,14 +113,14 @@ function Portfolio() {
                             </code>
                         </h3>
                         <p className="text-gray-400">B.S. in Artificial Intelligence</p>
-                        <p className="text-gray-400 text-center">Specialized in building high performance applications</p>
+                        <p className="text-gray-400 text-center">I build high performance distributed systems</p>
                     </div>
                 </div>
 
                 <div className="w-full max-w-xl mt-8 space-y-3">
                     <div className="flex justify-between items-center text-gray-300 transition-colors">
                         <div className="flex items-center">
-                            <span>Founding Engineer and designer</span>
+                            <span>Full-stack Developer</span>
                             <a href="https://bundler.space" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold ml-2">
                                 bundler.space
                             </a>
@@ -130,7 +130,7 @@ function Portfolio() {
 
                     <div className="flex justify-between items-center text-gray-300 transition-colors">
                         <div className="flex items-center">
-                            <span>Blockchain developer at</span>
+                            <span>Blockchain developer</span>
                             <a className="text-white hover:underline font-bold ml-2 cursor-pointer">
                                 Monumental AS
                             </a>
@@ -140,12 +140,12 @@ function Portfolio() {
 
                     <div className="flex justify-between items-center text-gray-300 transition-colors">
                         <div className="flex items-center">
-                            <span>Founding Engineer and designer</span>
+                            <span>Lead Software Engineer</span>
                             <a href="https://aurix.app" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold ml-2">
                                 aurix.app
                             </a>
                         </div>
-                        <span className="text-gray-500 ml-4">Nov 2024 — Now</span>
+                        <span className="text-gray-500 ml-4">Jan 2025 — Present</span>
                     </div>
                 </div>
             </main>
