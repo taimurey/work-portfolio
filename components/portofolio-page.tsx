@@ -130,7 +130,7 @@ function Portfolio() {
 
                     <div className="flex justify-between items-center text-gray-300 transition-colors">
                         <div className="flex items-center">
-                            <span>Blockchain developer</span>
+                            <span>Rust Engineer - backend</span>
                             <a className="text-white hover:underline font-bold ml-2 cursor-pointer">
                                 Monumental AS
                             </a>
@@ -141,8 +141,8 @@ function Portfolio() {
                     <div className="flex justify-between items-center text-gray-300 transition-colors">
                         <div className="flex items-center">
                             <span>Lead Software Engineer</span>
-                            <a href="https://aurix.app" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold ml-2">
-                                aurix.app
+                            <a href="https://puff.space" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold ml-2">
+                                puff.space
                             </a>
                         </div>
                         <span className="text-gray-500 ml-4">Jan 2025 — Present</span>
