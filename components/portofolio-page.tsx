@@ -5,6 +5,7 @@ import { FaGithub, FaTelegram } from "react-icons/fa";
 import _ from 'lodash';
 import { COLOR_MAP, Contribution } from "@/app/api/types";
 import { BsDiscord } from "react-icons/bs";
+import { GithubGraph } from "./ui/github";
 
 function Portfolio() {
     const [contributions, setContributions] = useState<Contribution[]>([]);
@@ -142,7 +143,7 @@ function Portfolio() {
                         <div className="flex items-center">
                             <span>Lead Software Engineer</span>
                             <a href="https://puff.space" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold ml-2">
-                                puff.space
+                                Soda Exchange
                             </a>
                         </div>
                         <span className="text-gray-500 ml-4">Jan 2025 — Present</span>
@@ -151,7 +152,10 @@ function Portfolio() {
             </main>
 
             <footer className="row-start-4 flex gap-6 flex-col flex-wrap items-center justify-center text-gray-400 text-sm">
-                {renderContributionGrid()}
+                {/* {renderContributionGrid()} */}
+                <div className="flex justify-center items-center">
+                    <GithubGraph username="taimurey" blockMargin={2} />
+                </div>
                 <div className="flex gap-6 items-center justify-center">
                     <a href="https://github.com/taimurey" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold">
                         <FaGithub className="text-white w-6 h-6" />
