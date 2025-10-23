@@ -20,14 +20,6 @@ type GithubGraphProps = {
   darkColorPalette?: string[];
 };
 
-/**
- * API response type for GitHub contributions
- */
-type GithubApiResponse = {
-  data: Activity[];
-  error?: string;
-};
-
 const DEFAULT_LIGHT_PALETTE = [
   COLOR_MAP["0"],
   COLOR_MAP["1"],
@@ -48,11 +40,10 @@ const DEFAULT_DARK_PALETTE = [
  * GitHub contribution graph component that displays user's contribution activity
  */
 export const GithubGraph = memo(({
-  username,
   blockMargin,
   lightColorPalette = DEFAULT_LIGHT_PALETTE,
   darkColorPalette = DEFAULT_DARK_PALETTE,
-}: GithubGraphProps) => {
+}: Omit<GithubGraphProps, 'username'>) => {
   const [contribution, setContribution] = useState<Activity[]>([]);
   const [loading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -62,7 +53,7 @@ export const GithubGraph = memo(({
     try {
       setError(null);
       setIsLoading(true);
-      const contributions = await fetchContributionData(username);
+      const contributions = await fetchContributionData();
       setContribution(contributions);
     } catch (error) {
       setError(error instanceof Error ? error.message : "Failed to fetch contribution data");
@@ -70,7 +61,7 @@ export const GithubGraph = memo(({
     } finally {
       setIsLoading(false);
     }
-  }, [username]);
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -82,8 +73,8 @@ export const GithubGraph = memo(({
 
   if (error) {
     return (
-      <div className="text-red-500 p-4 text-center">
-        Error: {error}
+      <div className="text-zinc-500 p-4 text-center text-xs">
+        Unable to load contributions
       </div>
     );
   }
@@ -125,33 +116,63 @@ GithubGraph.displayName = "GithubGraph";
 /**
  * Fetches GitHub contribution data for a given username
  */
-async function fetchContributionData(username: string): Promise<Activity[]> {
+async function fetchContributionData(): Promise<Activity[]> {
   try {
-    const response = await fetch(`https://github.vineet.pro/api/${username}`);
+    const response = await fetch('/api/contributions');
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    let responseBody: GithubApiResponse;
-    try {
-      responseBody = await response.json();
-    } catch (parseError) {
-      throw new Error("Failed to parse response data", { cause: parseError as Error });
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      throw new Error("Invalid data format received");
     }
 
-    if (!responseBody.data) {
-      throw new Error("No contribution data received");
+    if (data.length === 0) {
+      // Return empty array with proper structure for the past 365 days
+      const result: Activity[] = [];
+      const today = new Date();
+      for (let i = 364; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(today.getDate() - i);
+        result.push({
+          date: date.toISOString().split('T')[0],
+          count: 0,
+          level: 0
+        });
+      }
+      return result;
     }
 
-    return responseBody.data;
+    // Transform the data to match Activity format
+    // Use intensity to generate count since GitHub's count might be 0
+    return data.map(item => {
+      const level = parseInt(item.intensity || '0', 10);
+      // Map intensity to approximate counts: 0=0, 1=1-3, 2=4-6, 3=7-10, 4=11+
+      const countMap = [0, 2, 5, 8, 12];
+      return {
+        date: item.date,
+        count: countMap[level] || 0,
+        level: level
+      };
+    });
   } catch (error) {
-    if (error instanceof Error) {
-      console.error("Error fetching GitHub contributions:", error.message);
-      return [];
+    console.error("Error fetching GitHub contributions:", error instanceof Error ? error.message : "Unknown error");
+    // Return empty data for the past 365 days on error
+    const result: Activity[] = [];
+    const today = new Date();
+    for (let i = 364; i >= 0; i--) {
+      const date = new Date(today);
+      date.setDate(today.getDate() - i);
+      result.push({
+        date: date.toISOString().split('T')[0],
+        count: 0,
+        level: 0
+      });
     }
-    console.error("An unexpected error occurred while fetching GitHub contributions");
-    return [];
+    return result;
   }
 }
 

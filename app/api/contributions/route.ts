@@ -91,15 +91,21 @@ export async function GET(request: Request) {
       allContributions.push(...yearData.contributions);
     }
 
-    // Filter contributions for the past 365 days
+    // Filter contributions for the past 365 days (excluding future dates)
     const today = new Date();
+    today.setHours(23, 59, 59, 999); // End of today
     const past365Days = new Date(today);
-    past365Days.setDate(today.getDate() - 365);
+    past365Days.setDate(today.getDate() - 364); // 365 days total including today
+    past365Days.setHours(0, 0, 0, 0); // Start of that day
 
     const filteredContributions = allContributions.filter((contribution) => {
       const contributionDate = new Date(contribution.date);
+      // Only include dates that are not in the future
       return contributionDate >= past365Days && contributionDate <= today;
     });
+
+    // Sort by date ascending (oldest first)
+    filteredContributions.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     return NextResponse.json(filteredContributions);
   } catch (error) {

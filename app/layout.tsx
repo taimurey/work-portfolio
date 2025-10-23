@@ -10,8 +10,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Taimoor",
-  description: "Building products that matter",
+  title: "Taimoor Shafique - Rust Engineer",
+  description: "Software Engineer specializing in Rust and high-performance distributed systems. Building scalable solutions for blockchain and infrastructure.",
 };
 
 export default function RootLayout({
